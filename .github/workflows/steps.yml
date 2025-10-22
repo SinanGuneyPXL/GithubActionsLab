@@ -1,0 +1,24 @@
+name: Steps Examples
+
+on:
+  push:
+    paths:
+      - ".github/workflows/steps.yml"  # run when this file changes
+  workflow_dispatch:                   # allows manual runs from the UI
+
+jobs:
+  demo-steps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create testmachine directory
+        run: mkdir -p testmachine
+
+      - name: Run uname and save to testmachine/output.txt
+        run: uname -a > testmachine/output.txt
+
+      - name: Verification — show contents of output.txt
+        run: cat testmachine/output.txt
+
+      - name: Verification — list directories (recursive)
+        run: ls -alhR
